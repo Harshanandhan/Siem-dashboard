@@ -288,10 +288,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-- **Author**: Your Name
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub](https://github.com/yourusername)
+- **Author 1**: Harshanandhan Reddy Gajulapalli
+- **Email**: harshanandhan820@gmail.com
+- **Author 2**: Charitha Arigela
+- **Email**: 
+- **LinkedIn 1**:
+- **LinkedIn 2**: 
+
 
 ## 🔄 Changelog
 
