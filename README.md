@@ -291,7 +291,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author 1**: Harshanandhan Reddy Gajulapalli
 - **Email**: harshanandhan820@gmail.com
 - **Author 2**: Charitha Arigela
-- **Email**: 
+- **Email**: charithaarigela03@gmail.com
 - **LinkedIn 1**:
 - **LinkedIn 2**: 
 
