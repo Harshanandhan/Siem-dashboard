@@ -355,5 +355,5 @@ MIT License - See LICENSE file for details
 
 **Last Updated**: December 17, 2024  
 **Version**: 1.0.0  
-**Maintainer**: [Your Name]  
-**Contact**: [Your Email]
+**Maintainer**: Harshanandhan Reddy Gajulapalli  
+**Contact**: harshanandhan820@gmail.com
