@@ -294,17 +294,6 @@ open http://localhost:5601
 
 ---
 
-## 🎨 Design Guidelines
-
-When capturing screenshots:
-- **Resolution**: 1920x1080 or 1200x600
-- **Format**: PNG (lossless compression)
-- **Theme**: Dark mode (professional appearance)
-- **Annotations**: Add arrows/highlights for key features
-- **Privacy**: Mask any sensitive IPs or data
-- **Compression**: Optimize to < 500KB per image
-
----
 
 ## 🔗 References
 
