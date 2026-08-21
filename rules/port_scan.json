@@ -1,0 +1,9 @@
+{
+  "id": "port_scan",
+  "name": "Many destination ports from one IP",
+  "severity": "medium",
+  "mitre": "T1046",
+  "unique_ports": 10,
+  "window_sec": 60,
+  "match": "iptables SYN lines grouped by SRC, unique DPT"
+}

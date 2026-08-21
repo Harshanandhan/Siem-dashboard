@@ -1,0 +1,45 @@
+{
+  "author": "Harsha Nandhan Reddy Gajulapalli",
+  "email": "harshanandhanreddy820@gmail.com",
+  "method": "python rules on generated syslog/apache/iptables lines",
+  "note": "Elasticsearch/Kibana were not used. Docker is not installed on this machine.",
+  "log_counts": {
+    "ssh_failed": 50,
+    "ssh_accepted": 2,
+    "http": 101,
+    "firewall": 14
+  },
+  "alert_count": 3,
+  "alerts": [
+    {
+      "rule": "brute_force_ssh",
+      "title": "SSH password guessing",
+      "severity": "critical",
+      "mitre": "T1110.001",
+      "src_ip": "203.0.113.45",
+      "failed_ssh": 50,
+      "peak_in_window": 31,
+      "window_sec": 60,
+      "threshold": 30
+    },
+    {
+      "rule": "sql_injection",
+      "title": "SQL tokens in HTTP path",
+      "severity": "high",
+      "mitre": "T1190",
+      "src_ip": "203.0.113.45",
+      "requests": 14,
+      "sample_path": "/search.php?q=1' UNION SELECT * FROM users--"
+    },
+    {
+      "rule": "port_scan",
+      "title": "Many destination ports from one IP",
+      "severity": "medium",
+      "mitre": "T1046",
+      "src_ip": "203.0.113.45",
+      "unique_ports": 14,
+      "packets": 14,
+      "window_sec": 60
+    }
+  ]
+}

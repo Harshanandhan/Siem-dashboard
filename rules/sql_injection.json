@@ -1,0 +1,8 @@
+{
+  "id": "sql_injection",
+  "name": "SQL tokens in HTTP path",
+  "severity": "high",
+  "mitre": "T1190",
+  "threshold": 5,
+  "match": "union|select|insert|update|delete|drop|alter in Apache URL path"
+}
