@@ -1,0 +1,112 @@
+:root {
+  --bg: #0b1220;
+  --panel: #121a2b;
+  --border: #1e2a44;
+  --text: #e6edf7;
+  --muted: #8b9bb8;
+  --crit: #ff4d6d;
+  --high: #ff9f1c;
+  --med: #ffd166;
+  --ok: #2ec4b6;
+  --accent: #4cc9f0;
+  --btn: #1b283f;
+  --btn-hover: #243552;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, #152238 0%, var(--bg) 55%);
+  color: var(--text);
+  min-height: 100vh;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+.top {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  justify-content: space-between; align-items: flex-start;
+  margin-bottom: 1rem;
+}
+h1 { margin: 0 0 0.25rem; font-size: 1.55rem; letter-spacing: 0.02em; }
+.sub { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+button {
+  background: var(--btn); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.55rem 0.9rem; cursor: pointer; font-weight: 600;
+}
+button:hover { background: var(--btn-hover); border-color: var(--accent); }
+button:disabled { opacity: 0.5; cursor: wait; }
+button.ghost { background: transparent; }
+.live { color: var(--muted); font-size: 0.85rem; display: flex; gap: 0.35rem; align-items: center; }
+.banner {
+  background: linear-gradient(90deg, #132033, #1a2740);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  color: #c5d4ef;
+  font-size: 0.95rem;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 800px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.card .label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.card .num { font-size: 2rem; font-weight: 700; margin-top: 0.25rem; }
+.card.critical { border-top: 3px solid var(--crit); }
+.card.critical .num { color: var(--crit); }
+.card.high { border-top: 3px solid var(--high); }
+.card.high .num { color: var(--high); }
+.card.medium { border-top: 3px solid var(--med); }
+.card.medium .num { color: var(--med); }
+.card.total { border-top: 3px solid var(--ok); }
+.card.total .num { color: var(--ok); }
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.panel h2 { margin: 0 0 0.75rem; font-size: 1.05rem; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.status { color: var(--muted); font-size: 0.85rem; }
+.counts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+@media (max-width: 700px) { .counts { grid-template-columns: repeat(2, 1fr); } }
+.count {
+  background: #0d1524; border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.65rem 0.75rem; display: flex; justify-content: space-between;
+}
+.count .k { color: var(--muted); font-size: 0.85rem; }
+.count .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.65rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.sev {
+  display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+}
+.sev.critical { background: rgba(255,77,109,0.15); color: var(--crit); }
+.sev.high { background: rgba(255,159,28,0.15); color: var(--high); }
+.sev.medium { background: rgba(255,209,102,0.15); color: var(--med); }
+.metrics { color: #c9d6ea; font-family: ui-monospace, Consolas, monospace; font-size: 0.82rem; }
+.empty {
+  padding: 1rem; border: 1px dashed var(--border); border-radius: 8px;
+  color: var(--muted); margin-bottom: 0.75rem;
+}
+.hidden { display: none; }
+footer { color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem; }
+code { color: var(--accent); }
