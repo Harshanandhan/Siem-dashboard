@@ -2,7 +2,7 @@
 
 Detection rules on **generated** auth, Apache, and iptables logs.
 
-This is **not** a live Elasticsearch cluster. Docker is not installed on the machine that produced the results below, so there is no Kibana screenshot. The proof is `python generate_logs.py` then `python detect.py`.
+This is **not** a live Elasticsearch cluster. Docker is not installed on the machine that produced the results below, so there is no Kibana screenshot. The proof is `python generate_logs.py` then `python detect.py`, plus a **local Python dashboard** over the same `results/alerts.json`.
 
 Author: **Harsha Nandhan Reddy Gajulapalli**  
 Email: **harshanandhanreddy820@gmail.com**
@@ -28,6 +28,31 @@ python render_images.py
 ```
 
 Stdlib only for generate/detect. Pillow is only for the PNGs.
+
+## Dashboard
+
+Local SOC-style web UI over **real** alerts from `detect.py` — not fake Kibana, not Elasticsearch, Docker not required.
+
+```bash
+python dashboard.py
+```
+
+Then open **http://127.0.0.1:8080/**
+
+- Severity cards (critical / high / medium) and alert table (rule, MITRE, src_ip, key metrics)
+- Log counts from the same JSON report
+- Buttons: **Regenerate logs**, **Run detection**, **Refresh**
+- Optional live poll of `GET /api/alerts` every 5 seconds
+- Banner: *Local Python detection dashboard. Not Elasticsearch/Kibana. Docker not required.*
+
+APIs (stdlib `http.server` only):
+
+| Method | Path | Action |
+|---|---|---|
+| GET | `/api/alerts` | Read `results/alerts.json` (runs detect if missing) |
+| POST | `/api/generate` | Run `generate_logs.py` |
+| POST | `/api/detect` | Run `detect.py` |
+| GET | `/` | Static dashboard |
 
 ## Results
 
@@ -57,6 +82,8 @@ Seven of the generated “SQLi” URLs were `' OR '1'='1'` with **no** SQL keywo
 ```
 generate_logs.py     writes results/logs/
 detect.py            reads logs + rules/, writes alerts.json
+dashboard.py         stdlib http.server — local SOC UI + APIs
+dashboard/           index.html + static CSS/JS
 rules/               three JSON rules
 results/logs/        auth.log, access.log, firewall.log
 results/alerts.json  this run

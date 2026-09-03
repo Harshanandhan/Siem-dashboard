@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SIEM Detection Lab — Local Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>SIEM Detection Lab</h1>
+        <p class="sub">Harsha Nandhan Reddy Gajulapalli · real Python rules · MITRE T1110.001 / T1190 / T1046</p>
+      </div>
+      <div class="actions">
+        <button id="btn-generate" type="button">Regenerate logs</button>
+        <button id="btn-detect" type="button">Run detection</button>
+        <button id="btn-refresh" type="button" class="ghost">Refresh</button>
+        <label class="live"><input type="checkbox" id="live" checked /> Live poll (5s)</label>
+      </div>
+    </header>
+
+    <div class="banner" role="status">
+      Local Python detection dashboard. Not Elasticsearch/Kibana. Docker not required.
+    </div>
+
+    <section class="cards" id="sev-cards">
+      <div class="card critical"><div class="label">Critical</div><div class="num" id="n-critical">—</div></div>
+      <div class="card high"><div class="label">High</div><div class="num" id="n-high">—</div></div>
+      <div class="card medium"><div class="label">Medium</div><div class="num" id="n-medium">—</div></div>
+      <div class="card total"><div class="label">Alert count</div><div class="num" id="n-total">—</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>Log counts</h2>
+      <div class="counts" id="log-counts">
+        <div class="count"><span class="k">ssh_failed</span><span class="v" id="c-ssh_failed">—</span></div>
+        <div class="count"><span class="k">ssh_accepted</span><span class="v" id="c-ssh_accepted">—</span></div>
+        <div class="count"><span class="k">http</span><span class="v" id="c-http">—</span></div>
+        <div class="count"><span class="k">firewall</span><span class="v" id="c-firewall">—</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Alerts</h2>
+        <span class="status" id="status">Loading…</span>
+      </div>
+      <div id="empty" class="empty hidden">
+        No <code>results/alerts.json</code> yet. Use <strong>Regenerate logs</strong> then <strong>Run detection</strong>.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Rule</th>
+              <th>MITRE</th>
+              <th>src_ip</th>
+              <th>Key metrics</th>
+            </tr>
+          </thead>
+          <tbody id="alert-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Method: Python rules on generated syslog / Apache / iptables · proof in <code>results/alerts.json</code>
+    </footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
