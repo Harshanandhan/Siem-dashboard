@@ -1,4 +1,4 @@
-# SIEM Detection Lab
+﻿# SIEM Detection Lab
 
 Detection rules on **generated** auth, Apache, and iptables logs.
 
@@ -13,9 +13,9 @@ Email: **harshanandhanreddy820@gmail.com**
 
 | ID | MITRE | Logic |
 |---|---|---|
-| `brute_force_ssh` | T1110.001 | ≥ 30 failed SSH passwords from one IP in 60 seconds |
-| `sql_injection` | T1190 | ≥ 5 HTTP paths containing SQL tokens (`union`, `select`, `drop`, …) |
-| `port_scan` | T1046 | ≥ 10 unique destination ports from one IP in 60 seconds |
+| `brute_force_ssh` | T1110.001 | >= 30 failed SSH passwords from one IP in 60 seconds |
+| `sql_injection` | T1190 | >= 5 HTTP paths containing SQL tokens (`union`, `select`, `drop`, ...) |
+| `port_scan` | T1046 | >= 10 unique destination ports from one IP in 60 seconds |
 
 Successful SSH from `10.0.0.20` is in the same `auth.log` and **does not** fire the brute-force rule.
 
@@ -54,9 +54,31 @@ APIs (stdlib `http.server` only):
 | POST | `/api/detect` | Run `detect.py` |
 | GET | `/` | Static dashboard |
 
+## Evidence
+
+**Re-run (2026-09-09, America/New_York)** on Windows PowerShell from this repo root:
+
+```powershell
+python generate_logs.py; python detect.py
+```
+
+Stdout / `results/alerts.json` from that run:
+
+| Metric | Value |
+|---|---:|
+| Alert count | **3** |
+| `brute_force_ssh` (T1110.001) | critical — 50 failures, peak **31** in 60s (threshold 30) |
+| `sql_injection` (T1190) | high — **14** paths with SQL tokens |
+| `port_scan` (T1046) | medium — **14** unique dest ports in 60s |
+| Logs | ssh_fail=50, ssh_ok=2, http=101, fw=14 |
+
+Attacker IP in the generated data: `203.0.113.45` (TEST-NET-3, RFC 5737 — not a real host).
+
+Claims proven by this pipeline only: the three rule IDs above, the counts in the table, and the local dashboard reading the same JSON. **Not proven / not claimed:** live Elastic stack, Kibana UI, Logstash ingestion, production SOC deployment, or Scanner AI / BuggerHunt (separate apps).
+
 ## Results
 
-From a local run (seed 42). Attacker IP in the generated data: `203.0.113.45` (TEST-NET-3, RFC 5737 — not a real host).
+From a local run (seed 42). Same numbers as the Evidence re-run above when seed and scripts are unchanged.
 
 | Log file | Lines |
 |---|---:|
@@ -75,7 +97,7 @@ From a local run (seed 42). Attacker IP in the generated data: `203.0.113.45` (T
 
 JSON: `results/alerts.json`
 
-Seven of the generated “SQLi” URLs were `' OR '1'='1'` with **no** SQL keyword. This rule correctly ignored them.
+Seven of the generated "SQLi" URLs were `' OR '1'='1'` with **no** SQL keyword. This rule correctly ignored them.
 
 ## Layout
 
